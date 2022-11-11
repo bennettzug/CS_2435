@@ -1,5 +1,0 @@
-This program calculates the inverse tangent of a given value.
-Number of iterations: 20
-x = 0.6983795588580894
-using Gregory's series, arctan(0.698380) = 0.609638
-using the math library, arctan(0.698380) = 0.609638

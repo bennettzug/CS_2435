@@ -44,7 +44,7 @@ def flush_checker() -> bool:
 def full_house_checker() -> bool:
     '''Returns a bool value as to whether or not a hand is a full house.'''
     hand = hand_generator()
-    count = dict()
+    count = {}
     for *_, rank in hand:
         if rank in count:
             count[rank] += 1
