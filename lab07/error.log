@@ -1,0 +1,15 @@
+03/11/2022 16:31:42
+error occurred with threesquares.py
+Traceback (most recent call last):
+  File "/Users/bennett/compsci/school/CS_2435/lab07/grader.py", line 435, in test_one
+    result, feedback = check_output(actual_output, expect_output, type='stdout')
+ValueError: too many values to unpack (expected 2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/bennett/compsci/school/CS_2435/lab07/grader.py", line 573, in test_all
+    yield from test_one(folder, config=config, style=style_errors)
+  File "/Users/bennett/compsci/school/CS_2435/lab07/grader.py", line 483, in test_one
+    raise GraderException("An error occurred when running the program ({src:s}) against test data".format(src=source))
+__mp_main__.GraderException: An error occurred when running the program (threesquares.py) against test data
