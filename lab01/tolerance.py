@@ -1,5 +1,5 @@
-desiredWeight = int(input("Enter desired weight: "))
+desired_weight = int(input("Enter desired weight: "))
 tolerance = int(input("Enter tolerance (as percentage): ")) * .01
-minWeight = desiredWeight - tolerance * desiredWeight
-maxWeight = desiredWeight + tolerance * desiredWeight
-print(f"The range of accepted weight for the part is from {minWeight:.1f} to {maxWeight:.1f}")
+min_weight = desired_weight - tolerance * desired_weight
+max_weight = desired_weight + tolerance * desired_weight
+print(f"The range of accepted weight for the part is from {min_weight:.1f} to {max_weight:.1f}")
