@@ -23,6 +23,20 @@ def two_rolls(sides: int) -> int:
     return roll(sides) + roll(sides)
 
 
+def six_rolls() -> bool:
+    for _ in range(4):
+        if roll(6) == 6:
+            return True
+    return False
+
+
+def twenty_four_rolls() -> bool:
+    for _ in range(24):
+        if two_rolls(6) == 12:
+            return True
+    return False
+
+
 DECK = [(suit, rank+1) for suit in ['S', 'C', 'H', 'D'] for rank in range(13)]
 
 
@@ -103,8 +117,8 @@ def prob_calculator(trials: int, function: Callable, success=True):
 
 
 def main() -> None:
-    '''runs pi calculator w/ 10 million trials'''
-    prob_calculator(1_000_000, full_house_checker)
+    '''does that dudes experiment w/ 10 million trials'''
+    print(bool_repeater(1_000_000, twenty_four_rolls))
 
 
 if __name__ == "__main__":
