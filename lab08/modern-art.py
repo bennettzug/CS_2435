@@ -1,20 +1,14 @@
 '''Solves modern art problem from lab 08'''
-import drawBot as messedupdrawbot
+import math
+from typing import Tuple, Callable
+from collections import namedtuple
+import random
+# commmenting this out for now, as importing the module took like .25 secs
+# import drawBot as messedupdrawbot
 # pretty sure something is wrong with the drawbot module.
 # this workaround 'fixes' it
 # pylint: disable-next=protected-access
-drawBot = messedupdrawbot._drawBotDrawingTool
-
-
-def read_file(filename):
-    'takes in file, returns shit idk what yet'
-    artwork_list = []
-    with open(filename, encoding='utf-8') as artwork_file:
-        for line in artwork_file:
-            artwork_list.append(line.strip())
-    yield artwork_list[0].split()
-    for item in artwork_list[1:]:
-        yield item.split()
+# drawBot = messedupdrawbot._drawBotDrawingTool
 
 
 def tuple_from_hex(hexcode: str):
@@ -26,51 +20,104 @@ def tuple_from_hex(hexcode: str):
     return (red, green, blue)
 
 
-def draw_artwork(filename, output_filename):
-    '''takes in a file and outputs the artwork to a new file.'''
-    artwork_gen = read_file(filename)
-    background = next(artwork_gen)
-    drawBot.newDrawing()
-    drawBot.newPage(int(background[0]) * 100, int(background[1]) * 100)
-    red, green, blue = tuple_from_hex(background[2])
-    drawBot.fill(red, green, blue)
-    drawBot.rect(
-                 0,
-                 0,
-                 drawBot.width(),
-                 drawBot.height())
-    for circle in artwork_gen:
-        red, green, blue = tuple_from_hex(circle[3])
-        drawBot.fill(red, green, blue)
-        drawBot.oval(
-                     float(circle[0]) * 100,
-                     float(circle[1]) * 100,
-                     float(circle[2]) * 200,
-                     float(circle[2]) * 200)
-    drawBot.saveImage(output_filename)
-    drawBot.endDrawing()
+ArtworkCircle = namedtuple('Circle', ["x_location", "y_location",
+                           "radius", "color"])
+
+ArtworkBackground = namedtuple('Background', ["canvas_x", "canvas_y", "color"])
 
 
-# class ArtworkBackground:
-#     def __init__(self, canvas_x, canvas_y, color) -> None:
-#         self.canvas_x = canvas_x
-#         self.canvas_y = canvas_y
-#         self.color = color
+class Artwork:
+    '''class containing methods to deal with the "artwork" file that has been
+     provided'''
 
-# class ArtworkCircle:
-#     def __init__(self, x_location, y_location, radius, color) -> None:
-#         self.x_location = x_location
-#         self.y_location = y_location
-#         self.radius = radius
-#         self.color = color
+    def __init__(self, filename) -> None:
+        self.filename = filename
+
+    def read_file(self):
+        'generator that yields each line of the file as the correct type'
+        artwork_list = []
+        with open(self.filename, encoding='utf-8') as artwork_file:
+            for line in artwork_file:
+                artwork_list.append(line.strip())
+        yield ArtworkBackground(*artwork_list[0].split())
+        for item in artwork_list[1:]:
+            yield ArtworkCircle(*item.split())
+
+    def artwork(self) -> Tuple[ArtworkBackground, Tuple[ArtworkCircle, ...]]:
+        '''returns a tuple of the form (background, (circle0...circleN))'''
+        gen = self.read_file()
+        background = next(gen)
+        circles = []
+        for circle in gen:
+            circles.append(circle)
+        circles = tuple(circles)
+        return (background, circles)
+
+    # commented out, as module import took too much time
+
+    # def draw_artwork(self, output_filename):
+    #     '''takes in a file and outputs the artwork to a new file.'''
+    #     background = self.artwork()[0]
+    #     tuple_of_circles = self.artwork()[1]
+    #     drawBot.newDrawing()
+    #     drawBot.newPage(int(background.canvas_x) * 100,
+    #                     int(background.canvas_y) * 100)
+    #     drawBot.fill(*tuple_from_hex(background.color))
+    #     drawBot.rect(
+    #                 0,
+    #                 0,
+    #                 drawBot.width(),
+    #                 drawBot.height())
+    #     for circle in tuple_of_circles:
+    #         drawBot.fill(*tuple_from_hex(circle.color))
+    #         drawBot.oval(
+    #                     (float(circle.x_location) -
+    #                      float(circle.radius)) * 100,
+    #                     (float(circle.y_location) -
+    #                      float(circle.radius)) * 100,
+    #                     float(circle.radius) * 200,
+    #                     float(circle.radius) * 200)
+    #     drawBot.saveImage(output_filename)
+    #     drawBot.endDrawing()
+
+    def random_x_y(self):
+        '''Returns a tuple containing a random point within the canvas.'''
+        rand_x = random.random() * float(self.artwork()[0].canvas_x)
+        rand_y = random.random() * float(self.artwork()[0].canvas_y)
+        return (rand_x, rand_y)
+
+    # pylint: disable-next=invalid-name
+    def is_overlapping(self, x, y):
+        '''Returns a boolean value as to whether or not a point
+        is inside of one of the circles in the artwork.'''
+        for circle in self.artwork()[1]:
+            distance = math.sqrt((x - float(circle.x_location)) *
+                                 (x - float(circle.x_location)) +
+                                 (y - float(circle.y_location)) *
+                                 (y - float(circle.y_location)))
+            if distance <= float(circle.radius):
+                return False
+        return True
+
+    def overlapping_test(self):
+        '''Runs is_overlapping on a random point in the canvas.'''
+        return self.is_overlapping(*self.random_x_y())
 
 
-# def create_artwork(Artwork):
+def bool_repeater(trials: int, function: Callable, success=True) -> float:
+    '''Repeats a boolean test a certain number of times, then returns the
+     success rate.'''
+    count = 0
+    for _ in range(trials):
+        if function() == success:
+            count += 1
+    return count / trials
 
 
 def main() -> None:
     '''does all the things, should be pretty readable.'''
-    draw_artwork('art.txt', 'art.png')
+    artwork = Artwork('art.txt')
+    print(bool_repeater(10_000, artwork.overlapping_test))
 
 
 if __name__ == '__main__':
