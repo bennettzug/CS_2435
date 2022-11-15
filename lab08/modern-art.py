@@ -7,7 +7,7 @@ import random
 # commmenting this out for now, as importing the module took like .25 secs
 # might have thrown an error if it's run on a system where it isn't installed
 # import drawBot as messedupdrawbot
-# pretty sure something is wrong with the drawbot module.
+# pretty sure something is wrong with the drawbot module,
 # this workaround 'fixes' it
 # pylint: disable-next=protected-access
 # drawBot = messedupdrawbot._drawBotDrawingTool
