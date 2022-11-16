@@ -1,5 +1,6 @@
 import math
 from dataclasses import dataclass
+# pylint: disable=C0103, C0116
 
 
 @dataclass
