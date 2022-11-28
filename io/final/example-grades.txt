@@ -1,0 +1,6 @@
+Get a letter grade for the student based on the curve.
+Please enter a grade between 0 and 100: 100
+Class average: 75.70
+Standard deviation: 9.17
+Z-score: 2.65
+Current grade: A

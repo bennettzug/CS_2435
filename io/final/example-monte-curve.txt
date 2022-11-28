@@ -1,0 +1,4 @@
+Calculate the area under the curve with the Monte Carlo method.
+x1 = 5
+x2 = 10
+37.51307999999993
