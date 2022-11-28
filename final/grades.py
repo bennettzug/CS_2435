@@ -5,7 +5,7 @@
 print("Get a letter grade for the student based on the curve.")
 grade = int(input("Please enter a grade between 0 and 100: "))
 
-with open('grades.txt') as file:
+with open('grades.txt', encoding='utf-8') as file:
     grades = [int(line.rstrip()) for line in file]
 
 
