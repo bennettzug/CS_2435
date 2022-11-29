@@ -18,12 +18,15 @@ def create_bounding_box(x_1, x_2, function: Callable):
             y2 = function(x)
         x += 0.1
     y2 *= 1.1
-    return x_1, x_2, y1, y2
+
+    x_range = x_2 - x_1
+    y_range = y2
+    return x_1, x_2, y1, y2, x_range, y_range
 
 
-def random_point(x_min, x_max, y_min, y_max):
-    x = random.uniform(x_min, x_max)
-    y = random.uniform(y_min, y_max)
+def random_point(x_min, x_max, y_min, y_max, x_range, y_range):
+    x = (random.random() * (x_range)) + x_min
+    y = (random.random() * (y_range))
     return x, y
 
 

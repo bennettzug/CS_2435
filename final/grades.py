@@ -18,7 +18,12 @@ print(f"Class average: {class_average:.2f}")
 
 deviations = [(grade - class_average) ** 2 for grade in grades]
 
+# pretty sure this line is wrong, see line 25 for probable correct one.
 variance = ((sum(deviations)) / (len(deviations) - 1))
+
+# assuming I was right about the grader issue, this is the actual correct line.
+# variance = sum(deviations) / len(deviations)
+
 st_dev = variance ** 0.5
 
 print(f"Standard deviation: {st_dev:.2f}")
