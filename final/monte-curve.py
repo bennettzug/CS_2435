@@ -10,18 +10,18 @@ x2 = int(input("x2 = "))
 
 
 def create_bounding_box(x_1, x_2, function: Callable):
-    y1 = 0
-    y2 = 0
+    y_1 = 0
+    y_2 = 0
     x = x_1
     while x < x_2:
-        if function(x) > y2:
-            y2 = function(x)
+        if function(x) > y_2:
+            y_2 = function(x)
         x += 0.1
-    y2 *= 1.1
+    y_2 *= 1.1
 
     x_range = x_2 - x_1
-    y_range = y2
-    return x_1, x_2, y1, y2, x_range, y_range
+    y_range = y_2
+    return x_1, x_2, y_1, y_2, x_range, y_range
 
 
 def random_point(x_min, x_max, y_min, y_max, x_range, y_range):
