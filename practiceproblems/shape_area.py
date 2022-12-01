@@ -13,6 +13,7 @@ Circle = namedtuple('Circle', ["x_location", "y_location", "radius"])
 # top bound: largest (circle.y_location + circle.radius)
 # bottom bound: smallest (circle.y_location - circle.radius)
 
+
 def create_bounding_box(circle_list: List[Circle]):
     left_bound = None
     right_bound = None

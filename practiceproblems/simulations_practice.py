@@ -90,7 +90,7 @@ def geometric_repeater(trials: int, function: Callable, success=True) -> float:
     return avg / trials
 
 
-def bool_repeater(trials: int, function: Callable, success=True) -> float:
+def bool_repeater(trials: int, function: Callable[float, float], success=True) -> float:
     '''Repeats a boolean test a certain number of times, then returns the
      success rate.'''
     count = 0
