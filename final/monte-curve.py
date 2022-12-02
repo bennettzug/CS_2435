@@ -9,7 +9,7 @@ import calc
 
 BoundingBox = namedtuple("BoundingBox", ['x1', 'x2', 'y1', 'y2'])
 Ranges = namedtuple("Ranges", ["x_range", "y_range"])
-TRIALS = 1_000_000
+TRIALS = 10_000
 
 
 def create_bounding_box(x1, x2, function: Callable) -> BoundingBox:
