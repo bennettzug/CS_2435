@@ -9,7 +9,6 @@ import random
 # import drawBot as messedupdrawbot
 # pretty sure something is wrong with the drawbot module,
 # this workaround 'fixes' it
-# pylint: disable-next=protected-access
 # drawBot = messedupdrawbot._drawBotDrawingTool
 
 
@@ -88,7 +87,6 @@ class Artwork:
         rand_y = random.random() * float(self.artwork()[0].canvas_y)
         return (rand_x, rand_y)
 
-    # pylint: disable-next=invalid-name
     def is_overlapping(self, x, y) -> bool:
         """Returns a boolean value as to whether or not a point
         is inside of one of the circles in the artwork."""

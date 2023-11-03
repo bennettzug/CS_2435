@@ -1,5 +1,3 @@
-# pylint: disable=invalid-name
-# pylint HATES code that does math things with coordinates and such
 """Solves area under curve problem for CS2435 Final."""
 from typing import Callable
 import random
