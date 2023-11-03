@@ -8,7 +8,7 @@ elif year % 4 == 0:
     leapYear = True
 else:
     leapYear = False
-leapYearStr = ''
+leapYearStr = ""
 if not leapYear:
-    leapYearStr = 'not '
+    leapYearStr = "not "
 print(f"The year {year} is {leapYearStr}a leap year.")

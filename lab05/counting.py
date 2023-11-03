@@ -1,5 +1,5 @@
 item = input("What inventory item are we looking for? ")
-f = open("inventory.txt", 'r')
+f = open("inventory.txt", "r")
 
 inventory = []
 for line in f:
@@ -7,7 +7,7 @@ for line in f:
 
 f.close()
 
-#check how many 
+# check how many
 num = inventory.count(item)
 
 print(f"The number of times {item} appears is {num}")

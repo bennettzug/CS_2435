@@ -1,6 +1,4 @@
-from curses.ascii import isdigit
-
-isbn = input('Enter an ISBN number: ')
+isbn = input("Enter an ISBN number: ")
 
 
 def isValidIsbn(isbn):
@@ -19,7 +17,7 @@ def isValidIsbn(isbn):
         sum += int(ch) * iter
         iter -= 1
     lastDigit = 0
-    if isbn[9] == 'X':
+    if isbn[9] == "X":
         lastDigit = 10
     elif isbn[9].isdigit():
         lastDigit = int(isbn[9])

@@ -3,16 +3,17 @@ target = input("Target word: ")
 f = open("guesses.txt", "r")
 w = open("output.txt", "w")
 
+
 def wstr(guess, word):
     wstr = ""
-    
-    for loc,ch in enumerate(guess):
+
+    for loc, ch in enumerate(guess):
         if ch not in word:
             wstr += "."
         elif ch == word[loc]:
             wstr += "!"
         else:
-            wstr += '?'
+            wstr += "?"
     return wstr
 
 
@@ -22,4 +23,3 @@ for line in f:
 
 w.close()
 f.close()
-

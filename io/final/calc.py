@@ -1,4 +1,2 @@
-import math
-
 def func(x):
-	return x
+    return x

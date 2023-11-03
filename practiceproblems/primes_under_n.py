@@ -1,9 +1,10 @@
-
 import random
 import math
+
+
 # its roughtly n/ln(n)
 def is_prime(n):
-    '''primality checker'''
+    """primality checker"""
     if n < 2:
         return False
     if n == 2:
@@ -15,7 +16,8 @@ def is_prime(n):
         i += 1
     return True
 
-#probability that a random number is prime is 1 / ln(n) for a given range
+
+# probability that a random number is prime is 1 / ln(n) for a given range
 
 # should take ln(n) trials to encounter a prime
 
@@ -32,11 +34,11 @@ def experiment(n):
 print(f'{"size":^10}{"avg":^10}{"exp":^10}')
 
 for i in range(5):
-    n = 10**(i+3)
+    n = 10 ** (i + 3)
     trials = 100_000
     count = 0
     for i in range(trials):
         count += experiment(n)
-    real = count/trials
+    real = count / trials
     exp = math.log(n)
-    print(f'{n:^10,}{real:^10.2f}{exp:^10.2f}')
+    print(f"{n:^10,}{real:^10.2f}{exp:^10.2f}")

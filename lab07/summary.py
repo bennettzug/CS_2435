@@ -1,13 +1,13 @@
-'''
+"""
 Answers the summary question from lab07.
-'''
+"""
 
-with open('common.txt', encoding='utf-8') as f:
+with open("common.txt", encoding="utf-8") as f:
     common_words = set()
     for line in f:
         common_words.add(line.rstrip())
 
-with open('article.txt', encoding='utf-8') as a:
+with open("article.txt", encoding="utf-8") as a:
     a_dict = {}
     for line in a:
         word = line.rstrip()

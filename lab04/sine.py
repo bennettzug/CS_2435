@@ -1,4 +1,5 @@
 import math
+
 x = float(input("x = "))
 
 exp = 1
@@ -8,7 +9,7 @@ fact = 1
 for i in range(10):
     if exp > 1:
         fact *= exp * (exp - 1)
-    term = (x ** exp / fact)
+    term = x**exp / fact
     total += term * sign
     sign *= -1
     exp += 2

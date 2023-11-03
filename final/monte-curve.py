@@ -1,19 +1,19 @@
 # pylint: disable=invalid-name
 # pylint HATES code that does math things with coordinates and such
-'''Solves area under curve problem for CS2435 Final.'''
+"""Solves area under curve problem for CS2435 Final."""
 from typing import Callable
 import random
 from collections import namedtuple
 import calc
 
 
-BoundingBox = namedtuple("BoundingBox", ['x1', 'x2', 'y1', 'y2'])
+BoundingBox = namedtuple("BoundingBox", ["x1", "x2", "y1", "y2"])
 Ranges = namedtuple("Ranges", ["x_range", "y_range"])
 TRIALS = 10_000
 
 
 def create_bounding_box(x1, x2, function: Callable) -> BoundingBox:
-    '''Creates a box with a max y value for a given range of a function.'''
+    """Creates a box with a max y value for a given range of a function."""
     y1 = 0
     y2 = 0
     x = x1
@@ -26,32 +26,32 @@ def create_bounding_box(x1, x2, function: Callable) -> BoundingBox:
 
 
 def x_y_range(boundingbox: BoundingBox) -> Ranges:
-    '''Returns the ranges of a given bounding box'''
+    """Returns the ranges of a given bounding box"""
     x_range = boundingbox.x2 - boundingbox.x1
     y_range = boundingbox.y2 - boundingbox.y1
     return Ranges(x_range, y_range)
 
 
 def random_point(boundingbox: BoundingBox, ranges: Ranges):
-    '''Generates a random point within some bounding box.
+    """Generates a random point within some bounding box.
     Also requires a ranges object, as generating the ranges once
     is much faster than generating every time, and this function is
-    designed to be repeated multiple times.'''
+    designed to be repeated multiple times."""
     x = (random.random() * (ranges.x_range)) + boundingbox.x1
-    y = (random.random() * (ranges.y_range))
+    y = random.random() * (ranges.y_range)
     return x, y
 
 
 def is_under_curve(x: float, y: float, function: Callable[[float], float]):
-    '''Determines if a given point is smaller than or greater than a
+    """Determines if a given point is smaller than or greater than a
     function at the same x value.
-    Returns True if below, and False if above.'''
+    Returns True if below, and False if above."""
     return function(x) > y
 
 
 def main():
-    '''Takes in function (from calc.py) and 2 input x values. Then generates an
-    approximate area under the curve of that function within that range.'''
+    """Takes in function (from calc.py) and 2 input x values. Then generates an
+    approximate area under the curve of that function within that range."""
     print("Calculate the area under the curve with the Monte Carlo method.")
     x1 = int(input("x1 = "))
     x2 = int(input("x2 = "))

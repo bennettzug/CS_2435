@@ -1,7 +1,6 @@
 f = open("weather-data.txt")
 
-print("This program computes the linear regression of "
-      "weather data starting in 1900")
+print("This program computes the linear regression of " "weather data starting in 1900")
 
 data = []
 for line in f:

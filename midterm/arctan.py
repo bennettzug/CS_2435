@@ -4,12 +4,12 @@ print("This program calculates the inverse tangent of a given value.")
 iters = int(input("Number of iterations: "))
 x = float(input("x = "))
 
-#takes a hot minute
+# takes a hot minute
 exp = 1
 total = 0
 sign = 1
 for i in range(iters):
-    term = (x ** exp / exp)
+    term = x**exp / exp
     total += term * sign
     sign *= -1
     exp += 2

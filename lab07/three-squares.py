@@ -5,7 +5,8 @@ from dataclasses import dataclass
 
 @dataclass
 class Answer:
-    '''Datalass that contains correct answers. Automatically sorts x,y,z.'''
+    """Datalass that contains correct answers. Automatically sorts x,y,z."""
+
     def __init__(self, n: int, x: int, y: int, z: int):
         self.n = n
         self.x = min(x, y, z)
@@ -31,7 +32,7 @@ def create_roots_set(n: int) -> tuple[int, set]:
     root_n = math.ceil(math.sqrt(n))
     roots = set()
     for i in range(root_n + 1):
-        roots.add(i ** 2)
+        roots.add(i**2)
     return root_n, roots
 
 
